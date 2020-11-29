@@ -68,7 +68,7 @@
 // Lander constants
 #define LANDER_SIZE 1.0 // (m)
 #define UNLOADED_LANDER_MASS 100.0 // (kg)
-#define FUEL_CAPACITY 100.0 // (l)
+#define FUEL_CAPACITY 100000.0 // (l)
 #define FUEL_RATE_AT_MAX_THRUST 0.5 // (l/s)
 #define FUEL_DENSITY 1.0 // (kg/l)
 // MAX_THRUST, as defined below, is 1.5 * weight of fully loaded lander at surface
