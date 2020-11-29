@@ -1,20 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# simulation time and step time
-t_max = 1000
-dt = 0.1
-t_array = np.arange(0, t_max, dt)
-
 # Mass, Spring constant, Velocity, displacement
 
 m = 1
 k = 1
-x0 = 0
-v0 = 1
-x1 = x0 + dt * v0
-v1 = (x1 - x0) / dt
+x = 0
+v = 1
 
+
+# simulation time and step time
+t_max = 100
+dt = 0.1
+t_array = np.arange(0, t_max, dt)
+x_prev = - dt * v
 # initialize the trajectory list
 
 x_list = []
@@ -24,21 +23,14 @@ v_list = []
 
 for t in t_array:
     # append current state in trajectory
-    x_list.append(x0)
-    v_list.append(v0)
-    # store values of x1, v1
-    xStore = x1
-    vStore = v1
-
-    # calculate new position and velocity
-    a = -k * x1 / m
-    x1 = 2 * x1 - x0 + dt**2 * a
-    v1 = (x1 - xStore)/dt
-
-    # iterate values
-    x0 = xStore
-    v0 = vStore
-
+    x_list.append(x)
+    v_list.append(v)
+    # change the state of the trajectory
+    a = -k * x / m
+    x_now = x
+    x = 2 * x - x_prev + (dt**2) * a
+    print(x)
+    v = (1 / dt) * (x - x_now)
 # convert trajectory lists into arrays, so they can be sliced (useful for Assignment 2)
 x_array = np.array(x_list)
 v_array = np.array(v_list)
